@@ -4,8 +4,7 @@
   "description": "curso de sass",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./utils/scss/styles.scss:./utils/css/styles.css",
-    "start": "concurrently \"npm run sass:watch\" \"npm run dev\""
+    "sass": "sass --watch ./utils/scss/styles.scss:./utils/css/styles.css"
   },
   "repository": {
     "type": "git",
