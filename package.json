@@ -1,0 +1,20 @@
+{
+  "name": "sass_course",
+  "version": "0.0.1",
+  "description": "curso de sass",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./utils/scss/styles.scss:./utils/css/styles.css",
+    "start": "concurrently \"npm run sass:watch\" \"npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristianbarreiro/SASS_Pruebas.git"
+  },
+  "author": "CB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristianbarreiro/SASS_Pruebas/issues"
+  },
+  "homepage": "https://github.com/cristianbarreiro/SASS_Pruebas#readme"
+}
