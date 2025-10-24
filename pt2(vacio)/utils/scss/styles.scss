@@ -1,0 +1,9 @@
+$primary: rgb(5, 17, 172);
+$font-size: 1rem;
+$brand: 'cbf';
+
+
+.#{$brand}-title-primary {
+    font-size: $font-size;
+    color: $primary;
+}
