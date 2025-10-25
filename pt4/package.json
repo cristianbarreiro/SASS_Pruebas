@@ -1,7 +1,7 @@
 {
-  "name": "pt2",
-  "version": "1.0.1",
-  "description": "",
+  "name": "pt4",
+  "version": "1.0.0",
+  "description": "imports",
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./utils/scss/styles.scss:./utils/css/styles.css"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/cristianbarreiro/SASS_Pruebas.git"
   },
-  "author": "",
+  "author": "cb",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cristianbarreiro/SASS_Pruebas/issues"

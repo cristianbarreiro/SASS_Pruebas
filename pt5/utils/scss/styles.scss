@@ -1,0 +1,14 @@
+// En lugar de @import, usamos @use para una mejor modularidad y evitar conflictos de nombres
+
+/*
+* Abstracts
+*/
+
+@use 'abstracts/variables';
+
+/*
+* Components
+*/
+
+@use 'components/titles';
+@use 'components/cards';
