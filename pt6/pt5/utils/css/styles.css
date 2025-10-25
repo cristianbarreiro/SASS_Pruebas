@@ -1,0 +1,54 @@
+/*
+* Abstracts
+*/
+/*
+* Components
+*/
+.cbf-title-primary {
+  font-size: 1rem;
+  color: rgb(5, 17, 172);
+}
+
+.cbf-title-secondary {
+  font-size: 1rem;
+  color: rgb(12, 204, 70);
+}
+
+.cbf-title-light {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cbf-title-dark {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  font-weight: 20px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.cbf-card {
+  width: 200px;
+  padding: 0;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(12, 204, 70);
+}
+.cbf-card img {
+  width: 100%;
+  height: 150px;
+  display: block;
+}
+.cbf-card__body {
+  padding: 10px;
+  text-align: center;
+  background: rgb(5, 17, 172);
+  line-height: 50px;
+}
+.cbf-card h1 {
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+}
+
+/*# sourceMappingURL=styles.css.map */

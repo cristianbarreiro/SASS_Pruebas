@@ -1,0 +1,42 @@
+@use '../abstracts/variables' as *;
+
+// Placeholder con estilos base comunes
+%btn {
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// Clases que extienden el placeholder
+.#{$brand}-btn- {
+
+    &primary,
+    &success,
+    &danger {
+        @extend %btn;
+
+    }
+
+    &primary {
+        background-color: $primary;
+    }
+
+    &success {
+        background-color: $secondary;
+    }
+
+    &danger {
+        background-color: $dark;
+    }
+
+}
