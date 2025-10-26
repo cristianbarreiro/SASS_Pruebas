@@ -1,6 +1,7 @@
 @use '../abstracts/variables' as *;
 
 // Placeholder con estilos base comunes
+
 %btn {
     color: #fff;
     padding: 10px 20px;
@@ -18,6 +19,7 @@
 }
 
 // Clases que extienden el placeholder
+
 .#{$brand}-btn {
 
     &-primary,
@@ -45,7 +47,16 @@
         color: $color;
 
         &:hover {
-            background-color: $color;
+            // background-color: rgba($color, 0.5);
+            // background-color: darken($color: $color, $amount: 5);
+            // background-color: lighten($color: $color, $amount: 25);
+            // background-color: scale-color($color, $saturation: -20%, $lightness: 30%);
+            /* Mezcla el color con #5a3131 con una transparencia del 10% */
+            background: mix($color, #5a3131, 10%);
+            background-attachment: fixed; // o scroll, local
+            /* o scroll, local */
+
+
             color: #fff;
             cursor: pointer;
 

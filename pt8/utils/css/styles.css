@@ -91,7 +91,10 @@
   color: rgb(5, 17, 172);
 }
 .btn-outline-primary:hover {
-  background-color: rgb(5, 17, 172);
+  /* Mezcla el color con #5a3131 con una transparencia del 10% */
+  background: rgb(81.5, 45.8, 61.3);
+  background-attachment: fixed;
+  /* o scroll, local */
   color: #fff;
   cursor: pointer;
 }
@@ -100,7 +103,10 @@
   color: rgb(12, 204, 70);
 }
 .btn-outline-secondary:hover {
-  background-color: rgb(12, 204, 70);
+  /* Mezcla el color con #5a3131 con una transparencia del 10% */
+  background: rgb(82.2, 64.5, 51.1);
+  background-attachment: fixed;
+  /* o scroll, local */
   color: #fff;
   cursor: pointer;
 }
@@ -109,7 +115,10 @@
   color: #000000;
 }
 .btn-outline-danger:hover {
-  background-color: #000000;
+  /* Mezcla el color con #5a3131 con una transparencia del 10% */
+  background: rgb(81, 44.1, 44.1);
+  background-attachment: fixed;
+  /* o scroll, local */
   color: #fff;
   cursor: pointer;
 }
