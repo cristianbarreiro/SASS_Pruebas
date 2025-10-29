@@ -1,0 +1,12 @@
+@use 'variables' as *;
+@use 'sass:map';
+@use 'sass:color';
+
+@function color($key) {
+    @return map.get($palette, $key);
+}
+
+@function reduceColor($name, $amount) {
+    $color: map.get($palette, $name);
+    @return color.scale($color, $lightness: -$amount);
+}
