@@ -1,0 +1,33 @@
+@use 'variables' as *;
+@use 'sass:map';
+@use 'sass:color';
+
+@function color($key) {
+    @return map.get($palette, $key);
+}
+
+@function reduceColor($name, $amount) {
+    $color: map.get($palette, $name);
+    @return color.scale($color, $lightness: -$amount);
+}
+
+@function changeColor($name, $type: darken, $amount: 1, $colorMix: #fff) {
+    $color: map.get($palette, $name);
+
+    @if $type ==darken {
+        @return color.darken($color, $amount);
+    }
+
+    @else if $type ==lighten {
+        @return color.lighten($color, $amount);
+    }
+
+    @else if $type ==mix {
+        @return color.mix($color, $colorMix, $amount);
+    }
+
+    @else {
+        @warn "Tipo de cambio de color no válido: #{$type}. Usando color original.";
+        @return $color;
+    }
+}
