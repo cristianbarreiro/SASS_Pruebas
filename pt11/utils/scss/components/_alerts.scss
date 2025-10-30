@@ -23,7 +23,7 @@
     }
 
     &-danger {
-        background-color: color('danger');
+        background-color: changeColor('danger', mix, 80%, skyblue);
     }
 
     &-secondary {

@@ -11,15 +11,15 @@
     @return color.scale($color, $lightness: -$amount);
 }
 
-@function changeColor($name, $type: darken, $amount: 1, $colorMix: #fff) {
+@function changeColor($name, $type, $amount, $colorMix: #fff) {
     $color: map.get($palette, $name);
 
     @if $type ==darken {
-        @return color.darken($color, $amount);
+        @return color.adjust($color, $lightness: -$amount);
     }
 
     @else if $type ==lighten {
-        @return color.lighten($color, $amount);
+        @return color.adjust($color, $lightness: $amount);
     }
 
     @else if $type ==mix {
