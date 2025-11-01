@@ -1,0 +1,41 @@
+@use '../abstracts/variables' as *;
+@use 'sass:map';
+
+.#{$brand}-title-primary {
+    font-size: $font-size;
+    color: map.get($palette, 'primary');
+}
+
+.#{$brand}-title-secondary {
+    font-size: $font-size;
+    color: map.get($palette, 'secondary');
+}
+
+.#{$brand}-title-light {
+    font-size: $font-size;
+    color: map.get($palette, 'light');
+}
+
+.#{$brand}-title-dark {
+    color: map.get($palette, 'dark');
+
+    //Nesting
+    font: {
+        size: $font-size;
+        weight: 20px;
+        family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    // padding: {
+    //     top: 2px;
+    //     left: 2px;
+    //     right: 2px;
+    //     bottom: 0px;
+    // }
+}
+
+@each $name, $size in $titles {
+    .title-#{$name} {
+        font-size: $size;
+    }
+}
