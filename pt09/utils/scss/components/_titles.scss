@@ -1,0 +1,35 @@
+
+@use '../abstracts/variables' as *;
+
+.#{$brand}-title-primary {
+    font-size: $font-size;
+    color: $primary;
+}
+
+.#{$brand}-title-secondary {
+    font-size: $font-size;
+    color: $secondary;
+}
+
+.#{$brand}-title-light {
+    font-size: $font-size;
+    color: $light_opacity;
+}
+
+.#{$brand}-title-dark {
+    color: $dark_opacity;
+
+    //Nesting
+    font: {
+        size: $font-size;
+        weight: 20px;
+        family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    // padding: {
+    //     top: 2px;
+    //     left: 2px;
+    //     right: 2px;
+    //     bottom: 0px;
+    // }
+}
