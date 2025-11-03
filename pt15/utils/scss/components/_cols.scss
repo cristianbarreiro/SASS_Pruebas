@@ -1,0 +1,120 @@
+@use '../abstracts/variables' as *;
+
+$grid-columns: 12 !default;
+$gutter-x: 1rem !default;
+$gutter-y: 1rem !default;
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+// fila con gutters
+@mixin make-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * #{$gutter-y});
+    margin-right: calc(-.5 * #{$gutter-x});
+    margin-left: calc(-.5 * #{$gutter-x});
+
+    >* {
+        box-sizing: border-box;
+        padding-right: calc(.5 * #{$gutter-x});
+        padding-left: calc(.5 * #{$gutter-x});
+        margin-top: $gutter-y;
+    }
+}
+
+// Mixin principal
+@mixin cols($bks: $breakpoints, $ncols: $grid-columns, $prefix: 'col') {
+    .row {
+        @include make-row;
+    }
+
+    // Auto layout (reparte ancho por igual)
+    .#{$prefix} {
+        flex: 1 0 0%;
+        max-width: 100%;
+    }
+
+    // Auto width
+    .#{$prefix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+    }
+
+    // Fijas base: .col-1 .. .col-12
+    @for $i from 1 through $ncols {
+        .#{$prefix}-#{$i} {
+            flex: 0 0 calc(100% * #{$i} / #{$ncols});
+            max-width: calc(100% * #{$i} / #{$ncols});
+        }
+
+        .offset-#{$i} {
+            margin-left: calc(100% * #{$i} / #{$ncols});
+        }
+
+        .order-#{$i} {
+            order: $i;
+        }
+    }
+
+    .order-first {
+        order: -1;
+    }
+
+    .order-last {
+        order: 9999;
+    }
+
+    // Agrupación por fila (row-cols-N)
+    @for $i from 1 through $ncols {
+        .row-cols-#{$i}>* {
+            flex: 0 0 calc(100% / #{$i});
+            max-width: calc(100% / #{$i});
+        }
+    }
+
+    // Variantes responsivas
+    @each $name, $bk in $bks {
+        @media (min-width: $bk) {
+            .#{$prefix}-#{$name} {
+                flex: 1 0 0%;
+                max-width: 100%;
+            }
+
+            .#{$prefix}-#{$name}-auto {
+                flex: 0 0 auto;
+                width: auto;
+            }
+
+            @for $i from 1 through $ncols {
+                .#{$prefix}-#{$name}-#{$i} {
+                    flex: 0 0 calc(100% * #{$i} / #{$ncols});
+                    max-width: calc(100% * #{$i} / #{$ncols});
+                }
+
+                .offset-#{$name}-#{$i} {
+                    margin-left: calc(100% * #{$i} / #{$ncols});
+                }
+
+                .order-#{$name}-#{$i} {
+                    order: $i;
+                }
+
+                // row-cols-{breakpoint}-{i}
+                .row-cols-#{$name}-#{$i}>* {
+                    flex: 0 0 calc(100% / #{$i});
+                    max-width: calc(100% / #{$i});
+                }
+            }
+        }
+    }
+}
+
+// Genera las clases
+@include cols();
