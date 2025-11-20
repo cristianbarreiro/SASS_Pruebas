@@ -1,0 +1,107 @@
+@use 'sass:color';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+// =============================================
+// Multi-level Menu (Hover Version)
+// Re-creado desde cero
+// =============================================
+
+// Si quieres integrar la paleta global, descomenta:
+// @use '../abstracts/variables' as *;
+// @use 'sass:map';
+// $menu-bg: map.get($palette, 'primary'); // ejemplo
+
+$menu-bg: #1E274E;
+$menu-hover: #2A3563;
+$menu-text: #fff;
+$menu-border: rgba(255,255,255,.15);
+
+* { font-family: 'Montserrat', sans-serif; }
+
+nav.menu {
+	width: 280px;
+	height: 100vh;
+	position: fixed;
+	inset: 0 auto 0 0;
+	display: flex;
+	flex-direction: column;
+	background: $menu-bg;
+	padding: .75rem 0 1rem;
+	overflow-y: auto;
+}
+
+nav.menu .menu-links { width: 90%; margin-left: 10%; }
+
+// List reset
+nav.menu ul { list-style: none; margin: 0; padding: 0; }
+nav.menu li { position: relative; }
+
+// Links
+nav.menu li > a {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: .6rem .9rem;
+	color: $menu-text;
+	text-decoration: none;
+	font-weight: 500;
+	border-radius: 6px;
+	line-height: 1.25;
+	transition: background .25s, color .25s;
+}
+nav.menu li > a:hover { background: $menu-hover; }
+
+// Submenus hidden by default
+nav.menu ul ul {
+	display: none;
+	margin-top: .35rem;
+	padding-left: 1rem;
+	border-left: 2px solid $menu-border;
+}
+
+// Reveal on hover of parent li
+nav.menu li:hover > ul { display: block; }
+
+// Level visual tweaks (up to 3)
+nav.menu ul ul li > a { font-size: .9rem; opacity: .9; }
+nav.menu ul ul ul li > a { font-size: .8rem; opacity: .8; }
+
+// Caret for items with submenu (modern browsers)
+nav.menu li:has(> ul) > a::after {
+	content: '\25BC';
+	font-size: .55rem;
+	margin-left: auto;
+	opacity: .55;
+	transition: transform .25s;
+}
+nav.menu li:has(> ul):hover > a::after { transform: rotate(180deg); }
+
+// Fallback for browsers without :has - add .has-children class in HTML
+nav.menu li.has-children > a::after {
+	content: '\25BC';
+	font-size: .55rem;
+	margin-left: auto;
+	opacity: .55;
+	transition: transform .25s;
+}
+nav.menu li.has-children:hover > a::after { transform: rotate(180deg); }
+
+// Spacing
+nav.menu ul > li + li { margin-top: .15rem; }
+nav.menu ul ul > li + li { margin-top: .1rem; }
+
+// Scroll aesthetics
+nav.menu::-webkit-scrollbar { width: 10px; }
+nav.menu::-webkit-scrollbar-track { background: color.adjust($menu-bg, $lightness: -4%); }
+nav.menu::-webkit-scrollbar-thumb { background: color.adjust($menu-bg, $lightness: 6%); border-radius: 10px; }
+
+// Fade animation
+nav.menu ul ul { animation: fadeDown .2s ease; }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-4px); } to { opacity:1; transform: translateY(0); } }
+
+// Compact mode (optional)
+nav.menu.collapsed { width: 70px; }
+nav.menu.collapsed li > a { padding: .6rem .65rem; }
+nav.menu.collapsed li > a span.text { display: none; }
+nav.menu.collapsed li:has(> ul) > a::after { display:none; }
+

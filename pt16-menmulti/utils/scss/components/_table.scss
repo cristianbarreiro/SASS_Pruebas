@@ -1,0 +1,138 @@
+@use '../abstracts/variables' as *;
+@use 'sass:map';
+@use 'sass:color';
+
+$primary: map.get($palette, 'primary');
+// Ajustes más visibles para zebra y hover
+$striped: color.adjust($primary, $lightness: 40%);
+$hover: color.adjust($primary, $lightness: 30%);
+
+.table-container {
+    overflow-x: auto;
+    padding: 8px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
+
+    th,
+    td {
+        padding: 12px 14px;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background: $primary;
+        color: #fff;
+        text-align: left;
+        font-weight: 600;
+        z-index: 1;
+    }
+
+    tbody td {
+        border-bottom: 1px solid rgba(0, 0, 0, .06);
+    }
+
+    tbody tr:nth-child(even) {
+        background: $striped;
+    }
+
+    tbody tr:hover {
+        background: $hover;
+    }
+
+    // Variante compacta
+    &.table--compact {
+
+        th,
+        td {
+            padding: 8px 10px;
+        }
+    }
+
+    // Variante más densa
+    &.table--mini {
+        font-size: 12px;
+
+        th,
+        td {
+            padding: 6px 8px;
+        }
+    }
+}
+
+// Degradado por fila
+.table--gradient {
+    @for $row from 1 through 20 {
+        tbody tr:nth-child(#{$row}) {
+            // Rango suave para que no se vea “lavado”
+            $l1: -6% + (($row - 1) * 1%);
+            $l2: -4% + (($row - 1) * 1%);
+            background: linear-gradient(to right,
+                    color.adjust($primary, $lightness: $l1),
+                    color.adjust($primary, $lightness: $l2));
+        }
+    }
+}
+
+// Caja con dimensiones fijas y scroll
+.table-box {
+    /* tamaños por defecto (puedes cambiarlos desde el HTML con utilidades) */
+    --w: 200px;
+    --h: 180px;
+
+    width: var(--w);
+    height: var(--h);
+    overflow: auto;
+    /* scroll horizontal y vertical */
+    border: 1px solid rgba(0, 0, 0, .12);
+    border-radius: 8px;
+    background: #fff;
+}
+
+/* Mantiene el ancho natural del contenido dentro de la caja */
+.table-box>table {
+    width: max-content;
+    /* evita que se aplaste al ancho del contenedor */
+    min-width: 100%;
+    /* si cabe, ocupa el 100% */
+}
+
+/* Utilidades de tamaño generadas con @for (ancho y alto en pasos de 20px) */
+@for $i from 8 through 20 {
+    // 160px..400px
+    $w: $i * 20px;
+
+    .table-box--w-#{$i * 20} {
+        width: $w;
+    }
+}
+
+@for $i from 6 through 20 {
+    // 120px..400px
+    $h: $i * 20px;
+
+    .table-box--h-#{$i * 20} {
+        height: $h;
+    }
+}
+
+/* Utilidades de densidad (reduce padding/fuente) */
+@for $i from 1 through 3 {
+    .table--density-#{$i} {
+        $pad: 12px - ($i * 2px);
+        $fz: 14px - ($i * 1px);
+        font-size: if($fz < 12px, 12px, $fz);
+
+        th,
+        td {
+            padding: if($pad < 4px, 4px, $pad) if($pad + 2px < 6px, 6px, $pad + 2px);
+        }
+    }
+}

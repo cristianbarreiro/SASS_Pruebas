@@ -1,0 +1,58 @@
+@use '../abstracts/variables' as *;
+@use 'sass:map';
+@use 'sass:math';
+
+.#{$brand}-card {
+    width: 200px;
+    padding: 0;
+
+    border: {
+        radius: 5px;
+        width: 1px;
+        style: solid;
+        color: map.get($palette, 'secondary');
+    }
+
+    img {
+        width: 100%;
+        height: 150px;
+        display: block;
+    }
+
+    &__body {
+        padding: 10px;
+        text-align: center;
+        background: map.get($palette, 'light');
+        line-height: 50px;
+    }
+
+    h1 {
+        height: 50px;
+        line-height: 50px;
+        margin: 0;
+    }
+}
+
+
+@function scale($val, $max, $ratio: 1.5) {
+    @while $val >$max {
+        $val: math.div($val, $ratio);
+    }
+
+    @return $val;
+}
+
+.main-card {
+    height: 250px;
+    // Si quieres un “tinte” oscuro sobre el color claro, usa múltiples backgrounds:
+    // background: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.25)), map.get($palette, 'light');
+    background: map.get($palette, 'light');
+    width: scale(250px, 230px, 1.1);
+
+    border: {
+        radius: 10px;
+        width: 2px;
+        style: solid;
+        color: map.get($palette, 'primary');
+    }
+}
